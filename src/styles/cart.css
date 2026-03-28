@@ -1,0 +1,295 @@
+.cart-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* ✅ center horizontally */
+  justify-content: flex-start;
+  padding: clamp(25px, 6vw, 40px) 20px;
+  width: 100%;
+  min-height: 100vh;
+  background: #f6f7fb;   /* ✅ cleaner background */
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Cart Grid */
+.cart-grid{
+  width: 100%;
+  max-width: 1100px;   /* ✅ keeps content centered */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: clamp(20px, 5vw, 25px);
+  margin-top: clamp(20px, 5vw, 25px);
+}
+
+/* Cart Card */
+.cart-card{
+  background: linear-gradient(145deg, #ffffff, #f9f9f9);
+  border-radius: 16px;
+  padding: clamp(15px, 4vw, 22px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+
+  display: flex;                /* ✅ FIX */
+  flex-direction: column;       /* ✅ FIX */
+  justify-content: space-between; /* ✅ equal spacing */
+  min-height: 380px;           /* ✅ SAME HEIGHT */
+}
+
+.cart-card:hover{
+  transform:translateY(-5px) scale(1.02);
+  box-shadow:0 12px 28px rgba(0,0,0,0.12);
+}
+
+/* Quantity Controls */
+.qty-controls{
+  display: flex;
+  gap: clamp(8px, 2vw, 12px);
+  align-items: center;
+  margin: clamp(8px, 2vw, 12px) 0;
+}
+
+.qty-controls button{
+  padding: clamp(4px, 2vw, 6px) clamp(8px, 2.5vw, 12px);
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: clamp(13px, 3vw, 15px);
+  transition: all 0.25s ease;
+  min-width: clamp(30px, 7vw, 40px);
+  height: clamp(30px, 7vw, 40px);
+}
+
+.qty-controls button:hover{
+  background:#ff4d4d;
+  color:white;
+  border-color:#ff4d4d;
+  transform:scale(1.05);
+}
+
+/* Remove Button */
+.remove-btn{
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: clamp(6px, 2vw, 8px) clamp(10px, 3vw, 12px);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: clamp(8px, 2vw, 10px);
+  font-weight: 600;
+  font-size: clamp(12px, 3vw, 14px);
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  width: 100%;
+}
+
+.remove-btn:hover{
+  background:#e63939;
+  transform:translateY(-2px);
+  box-shadow:0 5px 14px rgba(0,0,0,0.15);
+}
+
+/* Cart Total Section */
+.cart-total{
+  width: 100%;
+  max-width: 600px;   /* ✅ center box */
+  margin: 35px auto 0; /* ✅ center horizontally */
+  background: white;
+  padding: clamp(20px, 5vw, 26px);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Buttons container */
+.cart-buttons{
+  display: flex;
+  gap: clamp(12px, 3vw, 20px);
+  margin-top: clamp(20px, 5vw, 25px);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Back to Menu Button */
+.back-menu-btn{
+  background: white;
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+  padding: clamp(10px, 2.5vw, 14px) clamp(20px, 5vw, 26px);
+  border-radius: 12px;
+  font-size: clamp(14px, 3.5vw, 16px);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.08);
+  flex: 1;
+  min-width: 120px;
+}
+
+.back-menu-btn:hover{
+  background:#ff4d4d;
+  color:white;
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Add Address Button */
+.address-btn{
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: clamp(10px, 2.5vw, 14px) clamp(22px, 5.5vw, 28px);
+  border-radius: 12px;
+  font-size: clamp(14px, 3.5vw, 16px);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.08);
+  flex: 1;
+  min-width: 120px;
+}
+
+.address-btn:hover{
+  background:#15803d;
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: clamp(15px, 4vw, 20px);
+  font-size: clamp(20px, 5vw, 24px);
+  font-weight: bold;
+}
+
+/* ================= RESPONSIVE MEDIA QUERIES ================= */
+
+/* Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .cart-container {
+    padding: 20px 15px;
+  }
+  
+  .cart-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .cart-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .back-menu-btn,
+  .address-btn {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .cart-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Laptop/Desktop (769px and above) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cart-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 22px;
+  }
+}
+
+/* IMAGE FIX */
+.cart-img{
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+/* TITLE */
+.item-title{
+  font-size: 16px;
+  font-weight: 600;
+  margin: 6px 0;
+}
+
+/* DESCRIPTION */
+.item-desc{
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+  min-height: 34px;  /* ✅ better alignment */
+}
+
+/* PRICE */
+.price{
+  font-weight: bold;
+  color: #ff4d4d;
+  margin: 6px 0;
+}
+
+/* SUBTOTAL */
+.item-subtotal{
+  font-size: 13px;
+  color: #444;
+}
+
+.cart-restaurant-info h4{
+  font-size: 14px;
+  margin: 0;
+}
+
+.cart-restaurant-info p{
+  font-size: 12px;
+  color: #777;
+  margin: 2px 0 8px;
+}
+
+/* ================= ADDRESS BOX ================= */
+
+.cart-address-box{
+  width: 100%;
+  max-width: 600px;
+  margin: 25px auto 0;
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  padding: clamp(18px, 5vw, 24px);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-align: left;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.cart-address-box:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* Address Title */
+.cart-address-box h3{
+  margin-bottom: 10px;
+  font-size: clamp(16px, 4vw, 18px);
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Address Text */
+.cart-address-box p{
+  margin: 4px 0;
+  font-size: clamp(13px, 3.5vw, 14px);
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/* Highlight Name */
+.cart-address-box p:first-of-type{
+  font-weight: 600;
+  color: #111827;
+}

@@ -1,0 +1,404 @@
+.restaurant-details-page{
+  padding: clamp(20px, 5vw, 30px) clamp(15px, 4vw, 20px) clamp(60px, 15vw, 100px);
+  max-width: clamp(100%, 90vw, 1200px);
+  margin: auto;
+  background: #fdfdfd;
+  font-family: "Segoe UI", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ---------- Restaurant Header ---------- */
+.restaurant-header{
+  margin-bottom:40px;
+  text-align:center;
+}
+
+.restaurant-name{
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: 700;
+  margin-bottom: clamp(8px, 2vw, 10px);
+  color: #222;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.restaurant-description{
+  color: #555;
+  font-size: clamp(14px, 3vw, 16px);
+  line-height: 1.5;
+  max-width: clamp(100%, 80vw, 800px);
+  margin: auto;
+}
+
+/* ---------- Offers Section ---------- */
+.restaurant-offers{
+  margin-bottom:40px;
+}
+
+.restaurant-offers h3{
+  margin-bottom: clamp(15px, 4vw, 20px);
+  font-size: clamp(18px, 4.5vw, 22px);
+  font-weight: 700;
+  color: #ff4d4d;
+}
+
+.offer-list{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.offer-card{
+  background: linear-gradient(145deg, #fff, #f9f9f9);
+  padding: clamp(12px, 3vw, 15px) clamp(15px, 4vw, 20px);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  font-size: clamp(13px, 3vw, 15px);
+  font-weight: 600;
+  color: #333;
+  transition: all .3s ease;
+  min-width: clamp(140px, 35vw, 180px);
+  flex: 1;
+  text-align: center;
+}
+
+.offer-card:hover{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 12px 26px rgba(0,0,0,0.15);
+}
+
+/* ---------- Menu Section ---------- */
+.menu-section h3{
+  font-size: clamp(20px, 5vw, 24px);
+  margin-bottom: clamp(20px, 5vw, 25px);
+  font-weight: 700;
+  color: #222;
+}
+
+/* Grid Layout */
+.menu-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 45vw, 260px), 1fr));
+  gap: clamp(20px, 5vw, 30px);
+}
+
+/* Menu Card */
+.menu-card{
+  background: linear-gradient(145deg, #ffffff, #fefefe);
+  border-radius: 16px;
+  padding: clamp(15px, 4vw, 20px) clamp(10px, 3vw, 15px);
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  transition: all .3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 14px 30px rgba(0,0,0,0.15);
+}
+
+/* Food Image */
+.menu-img{
+  width: 100%;
+  height: clamp(140px, 35vw, 180px);
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: clamp(10px, 3vw, 15px);
+  transition: transform .3s ease;
+}
+
+.menu-card:hover .menu-img{
+  transform:scale(1.05);
+}
+
+/* Food Name */
+.menu-card h4{
+  font-size: clamp(16px, 4vw, 18px);
+  margin-bottom: clamp(6px, 2vw, 8px);
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+
+/* Food Description */
+.menu-card .desc{
+  font-size: clamp(12px, 3vw, 14px);
+  color: #666;
+  margin-bottom: clamp(8px, 2vw, 12px);
+  line-height: 1.4;
+  min-height: clamp(35px, 8vw, 45px);
+}
+
+/* Price */
+.price{
+  font-size: clamp(14px, 3.5vw, 16px);
+  font-weight: 700;
+  color: #ff4d4d;
+  margin-bottom: clamp(8px, 2vw, 12px);
+}
+
+/* Addons */
+.addons{
+  font-size: clamp(12px, 3vw, 14px);
+  color: #777;
+  margin-bottom: clamp(8px, 2vw, 12px);
+  text-align: left;
+}
+
+.addon-item{
+  padding:2px 0;
+  font-weight:500;
+}
+
+/* ADD Button */
+.add-btn{
+  width: 100%;
+  padding: clamp(10px, 2.5vw, 12px);
+  border: none;
+  border-radius: 10px;
+  background: #ff4d4d;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: clamp(13px, 3vw, 15px);
+  transition: all .3s ease;
+  box-shadow: 0 4px 12px rgba(255,77,77,0.4);
+}
+
+.add-btn:hover{
+  background:#e63939;
+  transform:scale(1.05);
+  box-shadow:0 6px 18px rgba(230,57,57,0.45);
+}
+
+/* Quantity Controls */
+.qty-controls{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 12px);
+  margin-top: clamp(8px, 2vw, 10px);
+}
+
+.qty-controls button{
+  width: clamp(30px, 7vw, 35px);
+  height: clamp(30px, 7vw, 35px);
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  font-size: clamp(14px, 3.5vw, 16px);
+  font-weight: 600;
+  transition: all .3s;
+}
+
+.qty-controls button:hover{
+  background:#ff4d4d;
+  color:white;
+  border-color:#ff4d4d;
+}
+
+.qty-controls span{
+  font-weight: 700;
+  font-size: clamp(14px, 3.5vw, 16px);
+  min-width: clamp(18px, 4vw, 22px);
+  text-align: center;
+}
+
+/* Cart Bar */
+.cart-bar{
+  position: fixed;
+  bottom: clamp(15px, 4vw, 30px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #16a34a;
+  color: white;
+  padding: clamp(12px, 3vw, 16px) clamp(20px, 5vw, 26px);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: clamp(15px, 4vw, 25px);
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+  z-index: 1000;
+  min-width: clamp(220px, 60vw, 280px);
+  justify-content: space-between;
+  transition: all .3s ease;
+  max-width: 90vw;
+}
+
+.cart-bar span{
+  font-size: clamp(14px, 3.5vw, 16px);
+}
+
+.cart-bar button{
+  background: white;
+  color: #16a34a;
+  border: none;
+  padding: clamp(6px, 2vw, 8px) clamp(14px, 4vw, 18px);
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: clamp(13px, 3vw, 15px);
+  transition: all 0.3s ease;
+}
+
+.cart-bar button:hover{
+  background:#f3f3f3;
+  transform:scale(1.05);
+}
+
+
+
+/* ================= HERO BANNER ================= */
+
+.restaurant-hero{
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: clamp(25px, 6vw, 40px);
+  height: clamp(180px, 40vw, 260px);
+  background-image: url("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Dark overlay */
+
+.hero-overlay{
+  background: rgba(0,0,0,0.45);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(15px, 4vw, 20px);
+  text-align: center;
+}
+
+/* Restaurant name */
+
+.restaurant-hero .restaurant-name{
+  color: white;
+  font-size: clamp(24px, 6vw, 36px);
+  margin-bottom: clamp(8px, 2vw, 10px);
+  text-align: center;
+}
+
+/* Description */
+
+.restaurant-hero .restaurant-description{
+  color: #eee;
+  margin-bottom: clamp(15px, 4vw, 20px);
+  font-size: clamp(14px, 3vw, 16px);
+}
+
+/* Offers inside hero */
+
+.restaurant-hero .offer-list{
+  display: flex;
+  gap: clamp(10px, 3vw, 20px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Offer cards */
+
+.restaurant-hero .offer-card{
+  padding: clamp(10px, 3vw, 14px) clamp(16px, 4vw, 22px);
+  border-radius: 14px;
+  color: white;
+  font-weight: 600;
+  font-size: clamp(12px, 3vw, 14px);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  transition: all .35s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(150px, 40vw, 200px);
+  flex: 1;
+}
+
+.restaurant-hero .offer-card:hover{
+  transform:translateY(-6px) scale(1.05);
+
+  border:1px solid rgba(255,255,255,0.6);
+
+  box-shadow:0 14px 35px rgba(0,0,0,0.4);
+}
+
+/* ================= RESPONSIVE MEDIA QUERIES ================= */
+
+/* Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .restaurant-details-page {
+    padding: 15px clamp(10px, 3vw, 15px) 80px;
+  }
+  
+  .restaurant-header {
+    margin-bottom: 25px;
+  }
+  
+  .restaurant-offers {
+    margin-bottom: 25px;
+  }
+  
+  .offer-list {
+    gap: 12px;
+  }
+  
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .cart-bar {
+    bottom: 15px;
+    padding: 10px 15px;
+    min-width: 90%;
+    max-width: 95%;
+  }
+  
+  .restaurant-hero {
+    height: 180px;
+    margin-bottom: 25px;
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+  }
+  
+  .restaurant-hero {
+    height: 220px;
+  }
+  
+  .offer-list {
+    gap: 15px;
+  }
+}
+
+/* Laptop/Desktop (769px and above) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 28px;
+  }
+}

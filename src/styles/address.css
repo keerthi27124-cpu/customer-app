@@ -1,0 +1,221 @@
+.address-page{
+  max-width: clamp(100%, 90vw, 600px);
+  margin: clamp(25px, 6vw, 50px) auto;
+  padding: clamp(25px, 6vw, 35px) clamp(20px, 5vw, 30px);
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  font-family: "Segoe UI", Arial, sans-serif;
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+}
+
+.address-title{
+  text-align: center;
+  margin-bottom: clamp(20px, 5vw, 30px);
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 700;
+  color: #222;
+}
+
+.address-form{
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 3vw, 16px);
+}
+
+.address-form input{
+  padding: clamp(10px, 3vw, 14px) clamp(12px, 3vw, 16px);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: clamp(14px, 3.5vw, 15px);
+  transition: all 0.25s ease;
+  background: #fdfdfd;
+  width: 100%;
+}
+
+.address-form input:focus{
+  outline:none;
+  border-color:#16a34a;
+  box-shadow:0 0 0 3px rgba(22,163,74,0.15);
+  background:white;
+}
+
+/* Buttons Container */
+.address-buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-top: clamp(20px, 5vw, 25px);
+  gap: clamp(12px, 3vw, 18px);
+  flex-wrap: wrap;
+}
+
+/* Back to Cart Button */
+.back-cart-btn{
+  flex: 1;
+  background: white;
+  border: 2px solid #ff4d4d;
+  color: #ff4d4d;
+  padding: clamp(10px, 2.5vw, 14px) 0;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: clamp(13px, 3vw, 15px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.08);
+  min-width: 120px;
+}
+
+.back-cart-btn:hover{
+  background:#ff4d4d;
+  color:white;
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Checkout Button */
+.checkout-btn{
+  flex: 1;
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: clamp(10px, 2.5vw, 14px) 0;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: clamp(13px, 3vw, 15px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.08);
+  min-width: 120px;
+}
+
+.checkout-btn:hover{
+  background:#15803d;
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* ================= RESPONSIVE MEDIA QUERIES ================= */
+
+/* Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .address-page {
+    margin: 25px 15px;
+    padding: 25px 20px;
+  }
+  
+  .address-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .address-form {
+    gap: 12px;
+  }
+  
+  .address-form input {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+  
+  .address-buttons {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .back-cart-btn,
+  .checkout-btn {
+    padding: 12px 0;
+    font-size: 14px;
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .address-page {
+    margin: 35px auto;
+    padding: 30px 25px;
+  }
+  
+  .address-form input {
+    padding: 13px 15px;
+  }
+}
+
+/* ===== PAGE CENTERING (FULL SCREEN ALIGN) ===== */
+body {
+  background: #f5f7fb;
+}
+
+.address-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80vh;   /* vertical center */
+}
+
+/* ===== FORM CARD LOOK (MORE PROFESSIONAL) ===== */
+.address-page {
+  max-width: 500px;   /* tighter card */
+  margin: 40px auto;
+}
+
+/* ===== INPUT IMPROVEMENTS ===== */
+.address-form input {
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+}
+
+.address-form input::placeholder {
+  color: #999;
+}
+
+/* ===== TITLE STYLE ===== */
+.address-title {
+  font-size: 24px;
+  letter-spacing: 0.5px;
+}
+
+/* ===== BUTTON POLISH ===== */
+.back-cart-btn,
+.checkout-btn {
+  height: 45px;
+}
+
+/* ===== BUTTON ALIGNMENT FIX ===== */
+.address-buttons {
+  align-items: center;
+}
+
+/* ===== HOVER SMOOTH ===== */
+.address-page:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* ===== FIX FORM CENTER INSIDE CARD ===== */
+.address-page {
+  align-items: center;   /* horizontal center */
+}
+
+/* Make form nicely centered and balanced */
+.address-form {
+  width: 100%;
+  max-width: 420px;   /* keeps form centered & not too wide */
+  margin: 0 auto;
+}
+
+/* Improve input alignment */
+.address-form input {
+  width: 100%;
+  text-align: left;
+}
+
+/* Center buttons properly */
+.address-buttons {
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}

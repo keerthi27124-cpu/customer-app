@@ -1,0 +1,582 @@
+.menu-container {
+  padding: clamp(25px, 6vw, 40px);
+  max-width: clamp(100%, 90vw, 1100px);
+  margin: auto;
+  overflow-x: hidden;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 45vw, 250px), 1fr));
+  gap: clamp(15px, 4vw, 20px);
+}
+
+.menu-card {
+  background: white;
+  padding: clamp(15px, 4vw, 20px);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.menu-img {
+  width: 100%;
+  height: clamp(120px, 30vw, 150px);
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: clamp(8px, 2vw, 10px);
+}
+
+.price {
+  font-weight: bold;
+  margin-bottom: clamp(4px, 1vw, 5px);
+  font-size: clamp(14px, 3.5vw, 16px);
+  color: #ff4d4d;
+}
+
+.desc {
+  font-size: clamp(13px, 3vw, 14px);
+  color: #555;
+  margin-bottom: clamp(8px, 2vw, 10px);
+  line-height: 1.4;
+}
+
+.addons {
+  margin-top: 10px;
+}
+
+.addon-item {
+  font-size: clamp(12px, 3vw, 14px);
+  color: #444;
+  line-height: 1.3;
+}
+
+.no-addon {
+  font-size: clamp(12px, 2.5vw, 13px);
+  color: gray;
+}
+
+.add-btn {
+  margin-top: clamp(8px, 2vw, 10px);
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 15px);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: clamp(13px, 3vw, 14px);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* ================= FULL WIDTH MENU PAGE FIX ================= */
+
+.menu-container {
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  padding: clamp(25px, 6vw, 40px) clamp(30px, 7vw, 60px);
+  box-sizing: border-box;
+}
+
+/* Make menu grid responsive and full width */
+
+.menu-grid {
+  grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 45vw, 250px), 1fr));
+  width: 100%;
+}
+
+/* Restaurant hero / offers section full width if present */
+
+.restaurant-hero {
+  width: 100%;
+  max-width: 100%;
+}
+
+.offers {
+  width: 100%;
+}
+
+/* ================= CENTER MENU HEADING ================= */
+
+.menu-title {
+  text-align: center;
+  margin-bottom: clamp(15px, 4vw, 20px);
+  font-size: clamp(20px, 5vw, 24px);
+  font-weight: bold;
+}
+
+/* ================= MENU PAGE NAVBAR ================= */
+
+.menu-page-navbar {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #ff4d4d, #e63939);
+  box-shadow: 0 4px 20px rgba(255, 77, 77, 0.3);
+  position: relative;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.navbar-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(12px, 3vw, 16px) clamp(15px, 4vw, 20px);
+}
+
+.navbar-main .menu-page-title {
+  font-size: clamp(16px, 4vw, 20px);
+  font-weight: 600;
+  margin: 0;
+  color: white;
+  position: static;
+  transform: none;
+  left: auto;
+  text-align: center;
+  flex: 1;
+}
+
+.hamburger-menu {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  width: clamp(32px, 7vw, 38px);
+  height: clamp(32px, 7vw, 38px);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.hamburger-menu:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+.hamburger-menu span {
+  width: 18px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-menu:active {
+  transform: scale(0.95);
+}
+
+.navbar-main .navbar-icons {
+  display: none;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 10px);
+  background: rgba(255, 255, 255, 0.1);
+  padding: clamp(8px, 2vw, 12px);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: absolute;
+  top: 100%;
+  right: clamp(15px, 4vw, 20px);
+  margin-top: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: 200px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.navbar-main .navbar-icons.open {
+  display: flex;
+}
+
+.navbar-main .nav-icon-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  width: clamp(32px, 7vw, 38px);
+  height: clamp(32px, 7vw, 38px);
+  border-radius: 10px;
+  font-size: clamp(14px, 3.5vw, 18px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.navbar-main .nav-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar-main .nav-icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* Tablet and Desktop - Show icons by default */
+@media (min-width: 769px) {
+  .hamburger-menu {
+    display: none;
+  }
+  
+  .navbar-main .navbar-icons {
+    display: flex;
+    position: static;
+    background: none;
+    padding: 0;
+    border: none;
+    margin: 0;
+    min-width: auto;
+    justify-content: flex-end;
+  }
+  
+  .navbar-main .menu-page-title {
+    text-align: left;
+  }
+}
+
+/* Show back arrow on mobile menu page */
+@media (max-width: 768px) {
+  .menu-back-arrow {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-back-arrow {
+    display: none;
+  }
+}
+
+/* ================= RESPONSIVE MEDIA QUERIES ================= */
+
+/* Mobile (320px - 480px) */
+
+@media (max-width: 480px) {
+  .menu-container {
+    padding: 25px 20px;
+  }
+  
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .menu-card {
+    padding: 15px;
+  }
+  
+  .menu-img {
+    height: 120px;
+  }
+}
+
+/* Tablet (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  
+  .menu-card {
+    padding: 18px;
+  }
+}
+
+/* Laptop/Desktop (769px and above) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 19px;
+  }
+}
+
+/* ===== FINAL MENU PAGE GAP FIX ===== */
+
+.menu-container {
+  padding-top: 10px !important;  /* reduce top gap */
+}
+
+.menu-title {
+  margin-top: 5px !important;
+}
+
+.restaurant-hero {
+  margin-top: 5px !important;
+}
+
+.qty-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.qty-controls button {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ✅ REMOVE DARK OVERLAY EFFECT */
+.restaurant-hero {
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+}
+
+/* ✅ OFFERS SIDE BY SIDE */
+.offers-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* ✅ OFFER CHIP STYLE */
+.offer-chip {
+  background: rgba(255, 255, 255, 0.9);
+  color: #ff4d4d;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ✅ FIX HERO TEXT WITHOUT BLACK BG */
+.restaurant-hero {
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+}
+
+/* ✅ OFFERS SIDE BY SIDE */
+.offers-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* ✅ OFFER CHIP DESIGN */
+.offer-chip {
+  background: rgba(255, 255, 255, 0.9);
+  color: #ff4d4d;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ================= FINAL HERO FIX (NO CHANGE TO OLD CODE) ================= */
+
+/* Reduce hero height */
+.restaurant-hero {
+  height: 260px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+/* Center all text properly */
+.restaurant-hero h1,
+.restaurant-hero p {
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+}
+
+/* Spacing adjustments */
+.restaurant-hero h1 {
+  margin-bottom: 8px !important;
+  font-size: clamp(22px, 5vw, 32px);
+}
+
+.restaurant-hero p {
+  margin-bottom: 10px !important;
+  font-size: clamp(14px, 3.5vw, 18px);
+}
+
+/* ================= OFFERS FIX ================= */
+
+/* Keep offers in one line center */
+.offers-row {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Remove white background */
+.offer-chip {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* ================= CART BAR FIX ================= */
+
+/* Make cart bar smaller */
+.cart-bar {
+  height: 50px !important;
+  padding: 8px 16px !important;
+  border-radius: 30px !important;
+  font-size: 14px;
+}
+
+/* Adjust button */
+.cart-bar button {
+  padding: 6px 14px !important;
+  font-size: 13px !important;
+  border-radius: 20px;
+}
+
+/* Improve look */
+.cart-bar {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ================= REMOVE EXTRA GAP ================= */
+
+.menu-container {
+  padding-top: 15px !important;
+}
+
+/* ================= HERO CONTENT STRUCTURE FIX ================= */
+
+/* Force vertical layout */
+.restaurant-hero {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+/* Restaurant Name */
+.restaurant-hero h1 {
+  width: 100%;
+  margin-bottom: 8px !important;
+  text-align: center !important;
+}
+
+/* Description BELOW name */
+.restaurant-hero p {
+  width: 100%;
+  margin-bottom: 10px !important;
+  text-align: center !important;
+}
+
+/* ================= OFFERS POSITION FIX ================= */
+
+/* Offers BELOW description */
+.offers-row {
+  width: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+/* Only offers side-by-side */
+.offer-chip {
+  display: inline-block;
+}
+
+/* ================= REMOVE SIDE ALIGN ISSUE ================= */
+
+/* Prevent inline alignment issue */
+.restaurant-hero h1,
+.restaurant-hero p,
+.offers-row {
+  display: block !important;
+}
+
+/* ================= HERO TEXT VISIBILITY ================= */
+
+/* Add soft dark overlay for readability */
+.restaurant-hero {
+  position: relative;
+}
+
+.restaurant-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); /* makes text visible */
+  border-radius: inherit;
+}
+
+/* Bring text above overlay */
+.restaurant-hero h1,
+.restaurant-hero p,
+.offers-row {
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= REDUCE GAP BELOW NAVBAR ================= */
+
+/* Remove extra top spacing */
+.restaurant-details-page {
+  margin-top: -50px !important;
+}
+
+/* Reduce hero top spacing */
+.restaurant-hero {
+  margin-top: 0 !important;
+}
+
+/* ================= CART BAR WIDTH FIX ================= */
+
+/* Make cart bar smaller and centered */
+.cart-bar {
+  width: 0% !important;
+  max-width: 700px;
+  margin: 0 auto 15px auto !important;
+  border-radius: 70px !important;
+}
+
+/* Reduce height */
+.cart-bar {
+  padding: 8px 16px !important;
+  font-size: 14px;
+}
+
+/* Button styling */
+.cart-bar button {
+  padding: 6px 14px !important;
+  font-size: 13px;
+}
+
+/* Optional: smooth shadow */
+.cart-bar {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}

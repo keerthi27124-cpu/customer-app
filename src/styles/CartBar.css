@@ -1,0 +1,56 @@
+/* ================= CART BAR ================= */
+
+.cart-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 90%;
+  max-width: 500px;
+
+  padding: 12px 18px;
+
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+
+  z-index: 9999;
+}
+
+/* RED BAR */
+.cart-bar.red {
+  background: #ff4d4f;
+  color: white;
+}
+
+/* GREEN BAR */
+.cart-bar.green {
+  background: #16a34a;
+  color: white;
+}
+
+/* TEXT */
+.cart-bar span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* BUTTON */
+.cart-bar button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.cart-bar button:hover {
+  transform: scale(1.05);
+}

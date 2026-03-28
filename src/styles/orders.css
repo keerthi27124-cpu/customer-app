@@ -1,0 +1,207 @@
+.orders-container {
+  padding: 30px 15px;
+  max-width: 1300px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+/* ✅ FORCE 4 CARDS PER ROW */
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;              /* 🔥 reduced gap */
+  row-gap: 30px;          /* 🔥 FIX: less vertical gap */
+  align-items: stretch;   /* 🔥 FIX: equal height cards */
+}
+
+/* CARD */
+.order-card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;          /* 🔥 slightly reduced */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: 0.25s;
+  gap: 6px;               /* 🔥 FIX: reduce inside spacing */
+}
+
+.order-card:hover {
+  transform: translateY(-5px);
+}
+
+/* HEADER */
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 2px;     /* 🔥 reduce gap */
+}
+
+/* ✅ RESTAURANT ROW */
+.restaurant-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;               /* 🔥 spacing fix */
+}
+
+/* NAME SINGLE LINE (NO DOTS, SCROLL) */
+.restaurant-name {
+  font-weight: 600;
+  font-size: 15px;
+
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: none;
+}
+
+.restaurant-name::-webkit-scrollbar {
+  display: none;
+}
+
+/* RATING INLINE */
+.restaurant-rating {
+  font-size: 13px;
+  color: #f59e0b;
+  flex-shrink: 0;         /* 🔥 prevents breaking */
+}
+
+/* RESTAURANT ADDRESS */
+.restaurant-address {
+  font-size: 12px;
+  color: #666;
+  margin: 0;              /* 🔥 remove extra gap */
+}
+
+/* ITEMS */
+.items-box {
+  min-height: 60px;   /* keeps balance */
+  max-height: none;   /* ✅ REMOVE LIMIT */
+  overflow: visible;  /* ✅ SHOW ALL ITEMS */
+  font-size: 13px;
+}
+
+/* DELIVERY ADDRESS */
+.order-address {
+  font-size: 12px;
+  color: #555;
+  margin: 0;              /* 🔥 remove gap */
+}
+
+/* PRICE */
+.order-price {
+  font-weight: bold;
+  color: #16a34a;
+}
+
+/* STATUS */
+.status-badge {
+  margin-top: 4px;        /* 🔥 reduced */
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+.status-badge.pending {
+  background: #fff3cd;
+}
+
+.status-badge.ready {
+  background: #d1ecf1;
+}
+
+.status-badge.delivered {
+  background: #d4edda;
+}
+
+/* PAYMENT BADGES */
+.payment-badge {
+  font-size: 12px;
+  margin-top: 4px;        /* 🔥 reduced */
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+/* COD */
+.payment-badge.cod {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+/* ONLINE */
+.payment-badge.online {
+  background: #ecfdf5;
+  color: #16a34a;
+}
+
+/* TIME */
+.order-status {
+  font-size: 12px;
+  color: #777;
+  margin: 0;              /* 🔥 remove gap */
+}
+
+/* BUTTON */
+.track-btn {
+  margin-top: auto;
+  padding: 10px;
+  border: 1px solid #ff6600;
+  background: white;
+  color: #ff6600;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.track-btn:hover {
+  background: #ff6600;
+  color: white;
+}
+
+/* ✅ RESPONSIVE */
+@media (max-width: 1024px) {
+  .orders-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .orders-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ✅ FORCE PROPER VERTICAL SPACE BETWEEN ROWS */
+.orders-grid {
+  row-gap: 60px !important;   /* 🔥 increase row spacing */
+}
+
+/* ✅ ADD EXTRA SPACE BELOW EACH CARD */
+.order-card {
+  margin-bottom: 5px;         /* 🔥 ensures visible gap */
+}
+
+/* ✅ PREVENT CONTENT STRETCH ISSUE */
+.orders-grid > * {
+  align-self: start;
+}
+
+/* ✅ KEEP CARDS CLEAN EVEN WITH MORE ITEMS */
+.order-card {
+  justify-content: space-between;
+}
+
+/* ✅ ENSURE BUTTON STAYS AT BOTTOM */
+.track-btn {
+  margin-top: auto;
+}

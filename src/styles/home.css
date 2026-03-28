@@ -1,0 +1,1553 @@
+/* ================= GLOBAL ================= */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  background: #f5f6fa;
+  padding-top: 80px;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 480px) {
+  body {
+    padding-top: 60px;
+  }
+}
+
+/* ================= WELCOME BAR ================= */
+.welcome-bar {
+  background: linear-gradient(135deg, #ff4d4d 0%, #e63939 100%);
+  color: white;
+  padding: clamp(15px, 4vw, 20px) clamp(20px, 5vw, 40px);
+  text-align: center;
+  font-size: clamp(18px, 4.5vw, 24px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(20px, 5vw, 40px);
+  height: 65px;
+  background: #ff4d4d;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* LEFT SIDE TITLE (desktop) */
+.navbar-title {
+  margin: 0;
+  font-size: clamp(16px, 4vw, 20px);
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+/* Desktop nav */
+.nav-links {
+  display: flex;
+  z-index: 1200; /* always above */
+}
+
+.nav-links a {
+  margin-left: clamp(15px, 3vw, 25px);
+  color: white;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: clamp(14px, 2.5vw, 16px);
+}
+
+.nav-links a:hover {
+  text-decoration: none !important;
+}
+
+.nav-links a:visited {
+  text-decoration: none !important;
+}
+
+.nav-links a:active {
+  text-decoration: none !important;
+}
+
+/* BACK BUTTON - Always Visible */
+.back-btn-navbar {
+  display: flex;
+  background: #f3f4f6;
+  border: none;
+  font-size: clamp(14px, 3.5vw, 18px);
+  padding: clamp(6px, 2vw, 8px) clamp(10px, 3vw, 12px);
+  margin-right: clamp(8px, 2vw, 10px);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(30px, 7vw, 40px);
+  min-height: clamp(30px, 7vw, 40px);
+}
+
+.back-btn-navbar:hover {
+  background: #e5e7eb;
+  transform: translateX(-2px);
+}
+
+/* ================= CLICKABLE TITLE ================= */
+.clickable-title {
+  cursor: pointer;
+  color: #faf9f9;
+  transition: all 0.2s ease;
+  user-select: none;
+  outline: none;
+}
+
+.clickable-title:hover {
+  color: #080808;
+}
+
+.clickable-title:active {
+  color: #000000;
+  transform: scale(0.98);
+}
+
+.clickable-title:focus {
+  outline: none;
+  color: #070707;
+}
+
+/* ================= HAMBURGER ================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Animation */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ================= MOBILE NAVBAR ================= */
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .navbar-left {
+    position: absolute;
+    left: 20px;
+  }
+
+  /* Show hamburger */
+  .hamburger {
+    display: flex;
+  }
+
+  /* CENTER TITLE ONLY ON MOBILE */
+  .navbar-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* ORIGINAL TOP DROPDOWN NAVIGATION */
+  .nav-links {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    background: #ff4d4d;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 15px 0;
+
+    transform: translateY(-120%);
+    transition: transform 0.3s ease;
+    z-index: 1500;
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+  }
+
+  .nav-links a {
+    margin: 10px 0;
+    font-size: 16px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.05);
+  }
+
+  /* SIDE SLIDING NAVIGATION */
+  /* .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: #ff4d4d;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.15);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 80px 0 30px 0;
+
+    transform: translateX(0);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1500;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    margin: 15px 0;
+    font-size: 16px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    width: 80%;
+    text-align: center;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-5px);
+  }
+
+  /* Overlay for side menu */
+  .nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1400;
+  }
+
+  .nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* ================= TABLET & LAPTOP NAVBAR ================= */
+@media (min-width: 769px) {
+  .navbar {
+    justify-content: space-between;
+    padding: 0 clamp(20px, 5vw, 40px);
+  }
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    left: 0;
+  }
+
+  /* Hide hamburger on larger screens */
+  .hamburger {
+    display: none;
+  }
+
+  /* LEFT SIDE TITLE (tablet & laptop) */
+  .navbar-title {
+    position: relative;
+    left: 0;
+    transform: none;
+    margin-left: 10px;
+  }
+
+  /* Desktop nav */
+  .nav-links {
+    display: flex;
+    z-index: 1200;
+  }
+
+  .nav-links a {
+    margin-left: clamp(15px, 3vw, 25px);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: clamp(14px, 2.5vw, 16px);
+  }
+
+  /* Remove underlines from all nav links */
+  .nav-links a {
+    text-decoration: none !important;
+  }
+
+  .nav-links a:hover {
+    text-decoration: none !important;
+  }
+
+  .nav-links a:visited {
+    text-decoration: none !important;
+  }
+}
+
+/* ================= HOME ================= */
+.home{
+  max-width: clamp(100%, 90vw, 1400px);
+  margin: auto;
+  padding: clamp(15px, 4vw, 20px);
+}
+
+.hero-container{
+  position: sticky;
+  top: 65px;
+  z-index: 500;
+  background: white;
+  border-radius: 14px;
+  padding: clamp(12px, 3vw, 25px);
+  margin-bottom: clamp(15px, 4vw, 25px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 2vw, 10px);
+}
+
+.hero-row{
+  display: flex;
+  align-items: center;
+  gap: clamp(15px, 4vw, 30px);
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-row h1{
+  font-size: clamp(18px, 4vw, 20px);
+  margin: 0;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+
+.search-bar{
+  padding: clamp(6px, 2vw, 8px) clamp(10px, 3vw, 14px);
+  width: clamp(200px, 60vw, 400px);
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  font-size: clamp(13px, 2.5vw, 14px);
+  flex: 2;
+  min-width: 200px;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ================= CATEGORY ================= */
+.category-row{
+  display:flex;
+  gap:12px;
+  flex-wrap:nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #ff4d4d #f1f1f1;
+  width: 100%;
+  min-height: 40px;
+}
+
+.category-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.category-row::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.category-row::-webkit-scrollbar-thumb {
+  background: #ff4d4d;
+  border-radius: 3px;
+}
+
+.category-row::-webkit-scrollbar-thumb:hover {
+  background: #e63939;
+}
+
+.category{
+  background: #fff;
+  padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+  border: 1px solid #ddd;
+  cursor: pointer;
+  font-size: clamp(12px, 2.5vw, 13px);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: fit-content;
+  border-radius: 20px;
+}
+
+.category:hover,
+.category.active{
+  background:#ff4d4d;
+  color:white;
+}
+
+/* ================= RESTAURANTS ================= */
+.restaurants{
+  margin-top:20px;
+}
+
+.restaurants h2{
+  margin-bottom: clamp(15px, 4vw, 20px);
+  font-size: clamp(20px, 5vw, 24px);
+  text-align: center;
+}
+
+.restaurant-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 45vw, 250px), 1fr));
+  gap: clamp(15px, 4vw, 25px);
+}
+
+.restaurant-card{
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  padding: clamp(10px, 3vw, 15px);
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.restaurant-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 24px rgba(0,0,0,0.15);
+}
+
+.restaurant-card h3{
+  font-size: clamp(16px, 4vw, 18px);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.restaurant-card p{
+  font-size: clamp(13px, 2.5vw, 14px);
+  color: #555;
+  line-height: 1.4;
+}
+
+.restaurant-image{
+  width: 100%;
+  height: clamp(120px, 30vw, 160px);
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.restaurant-card button{
+  margin: 10px auto 0 auto;
+  padding: clamp(8px, 2vw, 10px) clamp(16px, 4vw, 20px);
+  border: none;
+  background: #ff4d4d;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  font-size: clamp(13px, 2.5vw, 14px);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 480px) {
+  .hero-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .hero-row h1 {
+    text-align: center;
+    flex: none;
+  }
+  
+  .search-bar {
+    width: 100%;
+  }
+  
+  .category-row {
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .restaurant-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .navbar {
+    height: 55px;
+  }
+  
+  body {
+    padding-top: 55px;
+  }
+  
+  .hero-container {
+    top: 55px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .search-bar {
+    width: 100%;
+  }
+  
+  .category-row {
+    gap: 10px;
+  }
+  
+  .restaurant-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .restaurant-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+}
+
+
+/* ICON CONTAINER */
+.navbar-icons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ICON BUTTON STYLE (same as your previous design) */
+.nav-icon-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.nav-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.05);
+}
+
+/* OPTIONAL: active click */
+.nav-icon-btn:active {
+  transform: scale(0.95);
+}
+
+.menu-page-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+
+/* ================= NEW NAVBAR FIX (ADD ONLY) ================= */
+
+/* Main wrapper */
+.menu-page-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  background: linear-gradient(135deg, #ff4d4d 0%, #e63939 100%);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+/* Inner layout */
+.navbar-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  height: 65px;
+}
+
+/* Title center */
+.menu-page-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+/* Left section fix */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Icon container */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* FINAL ICON STYLE (match your previous UI exactly) */
+.nav-icon-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.nav-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Click */
+.nav-icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* Hamburger (new one used in Navbar.js) */
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.hamburger-menu span {
+  width: 22px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* Fix overlap issue */
+.restaurant-details-page {
+  padding-top: 80px;
+}
+
+/* Mobile adjustment */
+@media (max-width: 480px) {
+  .navbar-main {
+    height: 55px;
+    padding: 8px 12px;
+  }
+
+  .menu-page-title {
+    font-size: 16px;
+  }
+
+  .nav-icon-btn {
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  .restaurant-details-page {
+    padding-top: 60px;
+  }
+}
+
+/* ================= FINAL NAVBAR FIX (SAFE OVERRIDE) ================= */
+
+/* Ensure ONLY ONE navbar height is used */
+.menu-page-navbar,
+.navbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65px !important;
+  z-index: 2000;
+}
+
+/* Prevent double height issue */
+.navbar-main {
+  height: 100% !important;
+  padding: 0 20px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Fix title alignment */
+.menu-page-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* Fix icon alignment */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Prevent extra spacing */
+.nav-icon-btn {
+  padding: 8px !important;
+}
+
+/* Prevent content going under navbar */
+.home,
+.restaurant-details-page {
+  padding-top: 80px !important;
+}
+
+/* MOBILE FIX */
+@media (max-width: 480px) {
+  .menu-page-navbar,
+  .navbar {
+    height: 55px !important;
+  }
+
+  .navbar-main {
+    height: 100% !important;
+    padding: 0 12px !important;
+  }
+
+  .menu-page-title {
+    font-size: 16px;
+  }
+
+  .home,
+  .restaurant-details-page {
+    padding-top: 60px !important;
+  }
+}
+
+/* ================= REMOVE GAP BETWEEN NAVBAR & WELCOME ================= */
+
+/* Remove extra top spacing */
+.home {
+  margin-top: 0 !important;
+  padding-top: 10px !important; /* small clean spacing */
+}
+
+/* Fix hero container spacing */
+.hero-container {
+  margin-top: 0 !important;
+  top: 65px !important;
+}
+
+/* Remove extra space caused by body */
+body {
+  padding-top: 65px !important;
+}
+
+/* MOBILE FIX */
+@media (max-width: 480px) {
+  body {
+    padding-top: 55px !important;
+  }
+
+  .hero-container {
+    top: 55px !important;
+  }
+
+  .home {
+    padding-top: 5px !important;
+  }
+}
+
+/* ===== FINAL BACK BUTTON STYLE ===== */
+
+.back-btn-navbar {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;   /* circle */
+  background: rgba(255,255,255,0.2) !important;
+  color: white !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  padding: 0 !important;
+}
+
+.back-btn-navbar:hover {
+  background: rgba(255,255,255,0.35) !important;
+}
+
+/* ===== FINAL BODY FIX ===== */
+
+body {
+  padding-top: 65px !important;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 55px !important;
+  }
+}
+
+/* ===== REMOVE UNDERLINE FROM VIEW MENU BUTTON ===== */
+
+.restaurant-card a,
+.restaurant-card a:link,
+.restaurant-card a:visited,
+.restaurant-card a:hover,
+.restaurant-card a:active {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+/* If button is styled as link */
+.restaurant-card button {
+  text-decoration: none !important;
+}
+
+/* ===== FINAL GAP FIX (DO NOT MODIFY ABOVE CODE) ===== */
+
+/* Control ONLY navbar spacing */
+body {
+  padding-top: 65px !important;
+}
+
+/* Remove extra space from containers */
+.home {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.hero-container {
+  margin-top: 0 !important;
+  top: 65px !important;
+}
+
+/* Remove hidden spacing caused by headings */
+.hero-container h1 {
+  margin-top: 0 !important;
+}
+
+/* MOBILE FIX */
+@media (max-width: 480px) {
+  body {
+    padding-top: 55px !important;
+  }
+
+  .hero-container {
+    top: 55px !important;
+  }
+}
+
+/* ===== FINAL PROFESSIONAL MOBILE MENU (OVERRIDE) ===== */
+
+@media (max-width: 768px) {
+
+  .nav-links {
+    position: fixed !important;
+    top: 65px !important;
+    left: 0;
+    width: 100%;
+    background: #ffffff !important;
+    color: #333;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    padding: 10px 0;
+
+    transform: translateY(-120%);
+    transition: all 0.35s ease;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 0 0 12px 12px;
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+  }
+
+  /* Each menu item */
+  .nav-links a {
+    width: 100%;
+    padding: 14px 20px;
+    margin: 0;
+    font-size: 16px;
+    color: #333 !important;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-weight: 500;
+    background: white;
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  /* Hover effect */
+  .nav-links a:hover {
+    background: #f5f5f5;
+    transform: none;
+  }
+}
+
+/* ===== FINAL MOBILE MENU (WORKING WITH YOUR JS) ===== */
+
+.mobile-menu {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-120%);
+  transition: 0.3s ease;
+  z-index: 1500;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.mobile-menu.active {
+  transform: translateY(0);
+}
+
+.mobile-menu button {
+  padding: 15px 20px;
+  border: none;
+  background: white;
+  text-align: left;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.mobile-menu button:hover {
+  background: #f5f5f5;
+}
+
+/* Hide desktop icons on mobile */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+}
+
+/* Show desktop menu only on large screens */
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* ===== CENTERED MOBILE MENU ===== */
+
+.mobile-menu {
+  position: fixed;
+  top: 65px;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  width: 90%;
+  max-width: 350px;
+
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: 0.35s ease;
+  z-index: 1500;
+}
+
+.mobile-menu.active {
+  transform: translate(-50%, 0);
+}
+
+/* Center text */
+.mobile-menu button {
+  text-align: center;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  background: white;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.mobile-menu button:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu button:hover {
+  background: #f5f5f5;
+}
+
+/* ===== HAMBURGER TO X ===== */
+
+.hamburger-menu span {
+  transition: all 0.3s ease;
+}
+
+.hamburger-menu.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== FINAL FIX: HIDE MOBILE MENU ON DESKTOP ===== */
+
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu {
+    display: flex;
+  }
+}
+
+/* ===== FINAL VISIBILITY CONTROL (CORRECT FIX) ===== */
+
+/* Default: hide everywhere */
+.mobile-menu {
+  display: none;
+}
+
+/* Show ONLY on mobile */
+@media (max-width: 768px) {
+  .mobile-menu {
+    display: flex;
+  }
+}
+
+/* Hide completely on desktop (force) */
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+/* ===== FINAL CORRECT MOBILE MENU FIX ===== */
+
+/* Default: hidden */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+}
+
+/* Mobile behavior */
+@media (max-width: 768px) {
+
+  /* Keep it hidden initially */
+  .mobile-menu {
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -120%);
+  }
+
+  /* Show ONLY when clicked */
+  .mobile-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Desktop: completely remove */
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+
+/* ===== PROFESSIONAL NAVBAR ===== */
+
+/* Navbar background */
+.menu-page-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
+  background: linear-gradient(135deg, #ff4d4d, #e63939);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Layout */
+.navbar-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  height: 65px;
+}
+
+/* Title */
+.menu-page-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Right side menu */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ===== MENU BUTTONS (Home, Menu, Cart, Orders) ===== */
+.nav-icon-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  padding: 5px 0;
+  transition: 0.3s;
+}
+
+/* Underline hover effect */
+.nav-icon-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: 0.3s;
+}
+
+.nav-icon-btn:hover::after {
+  width: 100%;
+}
+
+/* ===== PROFILE ICON (SMALL ROUND ICON) ===== */
+.profile-icon {
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white; /* icon white */
+  border: 1px solid rgba(255,255,255,0.4);
+  transition: 0.3s;
+}
+
+/* Hover */
+.profile-icon:hover {
+  background: rgba(255,255,255,0.35);
+  transform: scale(1.05);
+}
+
+/* ===== REMOVE WHITE BACKGROUND ISSUE ===== */
+.nav-icon-btn,
+.mobile-menu button {
+  background: transparent !important;
+}
+
+/* ===== MOBILE MENU ===== */
+.mobile-menu {
+  position: fixed;
+  top: 65px;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  width: 90%;
+  max-width: 320px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: 0.3s ease;
+  z-index: 1500;
+}
+
+.mobile-menu.active {
+  transform: translate(-50%, 0);
+}
+
+/* Mobile buttons */
+.mobile-menu button {
+  padding: 15px;
+  border: none;
+  background: white;
+  font-size: 16px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.mobile-menu button:hover {
+  background: #f5f5f5;
+}
+
+/* Hide desktop menu in mobile */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+}
+
+/* Hide mobile menu in desktop */
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+
+/* ================= FINAL CLEAN NAVBAR FIX ================= */
+
+/* Remove white box issue */
+.navbar-icons button {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+}
+
+/* Proper spacing between menu items */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Clean professional text buttons */
+.nav-icon-btn {
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 0;
+  position: relative;
+}
+
+/* Smooth underline effect */
+.nav-icon-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: 0.3s;
+}
+
+.nav-icon-btn:hover::after {
+  width: 100%;
+}
+
+/* ================= PROFILE ICON ================= */
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white !important;
+}
+
+/* Replace text with icon look */
+.profile-icon::before {
+  content: "👤";
+}
+
+/* Hide Profile text */
+.profile-icon {
+  font-size: 0;
+}
+
+/* ================= MOBILE MENU FIX ================= */
+
+.mobile-menu {
+  background: white !important;
+}
+
+/* Keep mobile menu clean */
+.mobile-menu button {
+  background: white !important;
+  color: #333 !important;
+  font-weight: 500;
+}
+
+/* ================= REMOVE INLINE CROWDING ================= */
+
+/* Prevent all items sticking together */
+.navbar-icons button {
+  white-space: nowrap;
+}
+
+/* ================= FINAL ALIGNMENT ================= */
+
+.navbar-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Center title properly */
+.menu-page-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ===== FINAL RIGHT SIDE NAVBAR FIX ===== */
+
+/* Better spacing */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 22px !important;
+}
+
+/* Clean text buttons */
+.nav-icon-btn {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  padding: 6px 0;
+  transition: all 0.25s ease;
+}
+
+/* Smooth underline animation */
+.nav-icon-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.nav-icon-btn:hover::after {
+  width: 100%;
+}
+
+/* Slight hover lift */
+.nav-icon-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* ===== PROFILE ICON FIX ===== */
+
+.profile-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0; /* hide text */
+  border: 1px solid rgba(255,255,255,0.35);
+  transition: all 0.3s ease;
+}
+
+/* Show icon */
+.profile-icon::before {
+  content: "👤";
+  font-size: 16px;
+}
+
+/* Hover effect */
+.profile-icon:hover {
+  background: rgba(255,255,255,0.3) !important;
+  transform: scale(1.08);
+}
+
+/* ===== FIX CROWDING ===== */
+.navbar-icons button {
+  white-space: nowrap;
+}
+
+/* ===== DESKTOP ALIGNMENT IMPROVEMENT ===== */
+@media (min-width: 769px) {
+  .navbar-main {
+    padding: 0 40px !important;
+  }
+}
+
+/* ===== FINAL PROFILE ICON ONLY FIX ===== */
+
+/* Hide "Profile" text */
+.profile-icon {
+  font-size: 0 !important; /* hides text */
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: transparent !important;
+  border: none !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Show ONLY icon in white */
+.profile-icon::before {
+  content: "👤";
+  font-size: 18px;
+  color: white;
+}
+
+/* Hover effect */
+.profile-icon:hover {
+  transform: scale(1.1);
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+}
+
+/* Remove extra spacing caused by text */
+.profile-icon {
+  padding: 0 !important;
+}
+
+/* ===== FINAL PROFILE ICON (NO WHITE BACKGROUND) ===== */
+
+/* Remove ALL background & border */
+.profile-icon {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0 !important; /* hide "Profile" text */
+  padding: 0 !important;
+}
+
+/* Show only white icon */
+.profile-icon::before {
+  content: "👤";
+  font-size: 18px;
+  color: white !important;
+}
+
+/* Clean hover (no white box) */
+.profile-icon:hover {
+  background: transparent !important;
+  transform: scale(1.1);
+}
