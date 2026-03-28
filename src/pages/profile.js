@@ -7,6 +7,7 @@ import "../styles/profile.css";
 function Profile() {
 
   const [user, setUser] = useState(null);
+  const [savedAddress, setSavedAddress] = useState(null);
   const navigate = useNavigate();
 
   const { clearCart } = useContext(CartContext);
@@ -24,10 +25,15 @@ function Profile() {
 
       const currentUser = data.user;
 
-      console.log(currentUser.user_metadata.name);
-      console.log(currentUser.user_metadata.phone);
-
       setUser(currentUser);
+
+      const { data: addr } = await supabase
+        .from("addresses")
+        .select("*")
+        .eq("user_id", currentUser.id)
+        .maybeSingle();
+
+      setSavedAddress(addr ?? null);
     };
 
     getUser();
@@ -77,6 +83,43 @@ function Profile() {
             <div className="profile-info-box">
               <span className="profile-label">Phone</span>
               <p className="profile-text">{user.user_metadata?.phone}</p>
+            </div>
+
+            <div className="profile-info-box">
+              <span className="profile-label">Delivery address</span>
+              {savedAddress ? (
+                <>
+                  <p className="profile-text">
+                    {savedAddress.name} ({savedAddress.phone})
+                  </p>
+                  <p className="profile-text">
+                    {savedAddress.house}, {savedAddress.street}
+                  </p>
+                  <p className="profile-text">
+                    {savedAddress.city}, {savedAddress.state} — {savedAddress.pincode}
+                  </p>
+                  <button
+                    type="button"
+                    className="profile-change-address-btn"
+                    onClick={() => navigate("/address")}
+                  >
+                    Change delivery address
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p className="profile-text" style={{ color: "#888" }}>
+                    No address saved yet.
+                  </p>
+                  <button
+                    type="button"
+                    className="profile-change-address-btn"
+                    onClick={() => navigate("/address")}
+                  >
+                    Add delivery address
+                  </button>
+                </>
+              )}
             </div>
 
             <button className="profile-logout-btn" onClick={handleLogout}>

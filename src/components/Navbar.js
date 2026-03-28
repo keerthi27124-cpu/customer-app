@@ -63,7 +63,7 @@ function Navbar() {
 
           <button
             className="nav-icon-btn profile-icon"
-            onClick={() => navigate("/👤")}
+            onClick={() => navigate("/profile")}
           >
             Profile
           </button>
@@ -77,7 +77,7 @@ function Navbar() {
         <button onClick={() => navigate("/menu")}>Menu</button>
         <button onClick={() => navigate("/cart")}>Cart</button>
         <button onClick={() => navigate("/orders")}>Orders</button>
-        <button onClick={() => navigate("/👤")}>Profile</button>
+        <button onClick={() => navigate("/profile")}>Profile</button>
       </div>
     </div>
   );

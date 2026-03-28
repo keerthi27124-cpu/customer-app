@@ -16,40 +16,43 @@ function Address() {
     state: "",
     pincode: ""
   });
+  const [hasSavedAddress, setHasSavedAddress] = useState(false);
 
   useEffect(() => {
-    fetchAddresses();
+    const load = async () => {
+      const { data: userData } = await supabase.auth.getUser();
+      const user = userData?.user;
+      if (!user) return;
 
-    const saved = JSON.parse(localStorage.getItem("address"));
-    if (saved) {
-      setForm(saved);
-    }
+      const { data } = await supabase
+        .from("addresses")
+        .select("*")
+        .eq("user_id", user.id)
+        .maybeSingle();
 
+      if (data) {
+        setHasSavedAddress(true);
+        setForm({
+          name: data.name || "",
+          phone: data.phone || "",
+          house: data.house || "",
+          street: data.street || "",
+          city: data.city || "",
+          state: data.state || "",
+          pincode: data.pincode || ""
+        });
+        return;
+      }
+
+      setHasSavedAddress(false);
+      const saved = JSON.parse(localStorage.getItem("address"));
+      if (saved) {
+        setForm((prev) => ({ ...prev, ...saved }));
+      }
+    };
+
+    load();
   }, []);
-
-  const fetchAddresses = async () => {
-
-    const { data: userData } = await supabase.auth.getUser();
-    const user = userData.user;
-
-    const { data } = await supabase
-      .from("addresses")
-      .select("*")
-      .eq("user_id", user.id)
-      .single();
-
-    if (data) {
-      setForm({
-        name: data.name || "",
-        phone: data.phone || "",
-        house: data.house || "",
-        street: data.street || "",
-        city: data.city || "",
-        state: data.state || "",
-        pincode: data.pincode || ""
-      });
-    }
-  };
 
   const handleChange = (e) => {
     setForm({
@@ -81,6 +84,8 @@ function Address() {
 
     if (!error) {
       localStorage.setItem("address", JSON.stringify(form));
+      setHasSavedAddress(true);
+      window.dispatchEvent(new Event("addressSaved"));
       navigate("/checkout");
     }
   };
@@ -88,7 +93,9 @@ function Address() {
   return (
     <div className="address-page">
 
-      <h2 className="address-title">Delivery Address</h2>
+      <h2 className="address-title">
+        {hasSavedAddress ? "Change delivery address" : "Add delivery address"}
+      </h2>
 
       <form className="address-form" onSubmit={saveAddressAndCheckout}>
 

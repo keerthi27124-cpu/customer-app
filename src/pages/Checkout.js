@@ -156,23 +156,6 @@ upiId
 
 alert("Order placed successfully");
 
-// ✅ CLEAR CART
-localStorage.removeItem("cart");
-setCartItems([]);
-
-// ✅ CLEAR ADDRESS
-localStorage.removeItem("address");
-
-await supabase
-  .from("addresses")
-  .delete()
-  .eq("user_id", user.id);
-
-// ✅ RESET STATE
-setSelectedAddress(null);
-setAddresses([]);
-
-// ✅ NAVIGATE
 navigate("/orders");
 
 } catch (err) {
@@ -310,6 +293,30 @@ border:"1px solid #ddd"
 
 <section style={{ background: "white", padding: "20px", borderRadius: "16px", marginBottom: "20px" }}>
 <h3>Delivery Address</h3>
+
+{addresses.length === 0 && (
+<p style={{ color: "#555", marginBottom: "12px" }}>
+No saved address yet. Add one to place your first order.
+</p>
+)}
+
+{addresses.length === 0 && (
+<button
+type="button"
+onClick={() => navigate("/address")}
+style={{
+background: "#16a34a",
+color: "white",
+padding: "10px 18px",
+border: "none",
+borderRadius: "10px",
+cursor: "pointer",
+marginBottom: "10px"
+}}
+>
+Add delivery address
+</button>
+)}
 
 {addresses.map((addr)=>(
 <div

@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "../supabaseClient"; // ✅ ADDED
 import "../styles/cart.css";
+
+const normalizeCart = (cart) => {
+  return cart.map((item) => ({
+    ...item,
+    restaurant_name: item.restaurant_name || "Restaurant",
+    restaurant_location: item.restaurant_location || "Location not available",
+    description: item.description || "No description available"
+  }));
+};
 
 function Cart() {
 
@@ -9,16 +18,7 @@ function Cart() {
   const [offer, setOffer] = useState(null);
   const [address, setAddress] = useState(null); // ✅ ADDED
   const navigate = useNavigate();
-
-  // ✅ NORMALIZE FUNCTION (reusable)
-  const normalizeCart = (cart) => {
-    return cart.map(item => ({
-      ...item,
-      restaurant_name: item.restaurant_name || "Restaurant",
-      restaurant_location: item.restaurant_location || "Location not available",
-      description: item.description || "No description available"
-    }));
-  };
+  const location = useLocation();
 
   useEffect(() => {
 
@@ -27,37 +27,54 @@ function Cart() {
       setCartItems(normalizeCart(cart));
     };
 
+    const refreshAddress = async () => {
+      const { data: userData } = await supabase.auth.getUser();
+      const user = userData?.user;
+
+      if (!user) return;
+
+      const { data } = await supabase
+        .from("addresses")
+        .select("*")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      setAddress(data ?? null);
+    };
+
     loadCart();
+    refreshAddress();
 
     window.addEventListener("storage", loadCart);
+    window.addEventListener("addressSaved", refreshAddress);
 
     const storedOffer = JSON.parse(localStorage.getItem("restaurant_offer"));
     if (storedOffer) setOffer(storedOffer);
 
-    fetchAddress(); // ✅ ADDED
-
     return () => {
       window.removeEventListener("storage", loadCart);
+      window.removeEventListener("addressSaved", refreshAddress);
     };
 
-  }, []);
+  }, [location.key]);
 
-  // ✅ FETCH ADDRESS
-  const fetchAddress = async () => {
+  const goToCheckout = async () => {
     const { data: userData } = await supabase.auth.getUser();
     const user = userData?.user;
-
     if (!user) return;
 
-    const { data } = await supabase
+    const { data: saved } = await supabase
       .from("addresses")
-      .select("*")
+      .select("id")
       .eq("user_id", user.id)
-      .single();
+      .maybeSingle();
 
-    if (data) {
-      setAddress(data);
+    if (saved) {
+      navigate("/checkout");
+      return;
     }
+
+    navigate("/address");
   };
 
   const updateCart = (cart) => {
@@ -200,12 +217,13 @@ function Cart() {
               className="address-btn"
               onClick={() => navigate("/address")}
             >
-              Change Address
+              {address ? "Change Address" : "Add Address"}
             </button>
 
             <button
               className="checkout-btn"
-              onClick={() => navigate("/checkout")}
+              type="button"
+              onClick={goToCheckout}
             >
               Save & Checkout
             </button>
